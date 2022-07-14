@@ -71,10 +71,10 @@ table {
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;
-  color: ${props => props.theme.white.darker};
+  color: black;
   line-height: 1.2;
   font-weight: 300;
-  background-color: black;
+  background-color: ${props => props.theme.bgColor};
 }
 
 a {
@@ -89,12 +89,10 @@ const client = new QueryClient();
 
 root.render(
   <React.StrictMode>
-    <RecoilRoot>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <App />
-      </ThemeProvider>
-    </RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 
