@@ -31,7 +31,7 @@ const Loader = styled.span`
 const ThemeModeButton = styled.button`
 	margin: 15px 0;
 	border: none;
-	background-color: ${props => props.theme.buttonColor};
+	background-color: ${props => props.theme.buttonBg};
 	width: 120px;
 	height: 30px;
 	border-radius: 15px;

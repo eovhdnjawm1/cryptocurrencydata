@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
+import { isDarkAtom } from './../atoms';
 
 const Title = styled.h1`
 	color: ${props => props.theme.accentColor};
@@ -27,8 +29,8 @@ const Coinlist = styled.ul`
 `
 
 const Coin = styled.li`
-	background-color: white;
-	color: ${props => props.theme.bgColor};
+	background-color: ${props => props.theme.buttonBg};
+	color: ${props => props.theme.buttonText};
 	margin-bottom: 10px;
 	border-radius: 15px;
 	font-weight: bold;
@@ -66,10 +68,12 @@ const Loader = styled.span`
 const ThemeModeButton = styled.button`
 	margin: 15px 0;
 	border: none;
-	background-color: ${props => props.theme.buttonColor};
+	background-color: ${props => props.theme.buttonBg};
+	color: ${props => props.theme.buttonText};
 	width: 120px;
 	height: 30px;
 	border-radius: 15px;
+
 	cursor:pointer;
 `
 
@@ -83,10 +87,17 @@ interface ICoin {
 	type: string,
 }
 
+interface ICoinProps {
 
-function Coins() {
+}
+
+function Coins({ }: ICoinProps) {
 	const [coins, setCoins] = useState<ICoin[]>([]);
 	const [loading, setLoading] = useState(true);
+
+	const setDarkAtom = useSetRecoilState(isDarkAtom);
+	const isDarakAtom = () => setDarkAtom(prev => !prev)
+
 
 	useEffect(() => {
 
@@ -102,7 +113,7 @@ function Coins() {
 		<Container>
 			<Header>
 				<Title>Coins</Title>
-				<ThemeModeButton>테마 모드 변경</ThemeModeButton>
+				<ThemeModeButton onClick={isDarakAtom}>테마 모드 변경</ThemeModeButton>
 
 			</Header>
 			{loading ? <Loader>Loading...</Loader> : <Coinlist>
