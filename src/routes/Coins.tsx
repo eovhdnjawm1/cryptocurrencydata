@@ -18,6 +18,7 @@ const Header = styled.header`
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 `
 
 
@@ -36,7 +37,8 @@ const Coin = styled.li`
 	a {
 		padding: 20px;
 		transition: color .3s ease-in-out;
-		display:block;
+		display:flex;
+		align-items: center;
 		cursor: pointer;
 	}
 
@@ -46,12 +48,29 @@ const Coin = styled.li`
 		}
 	}
 `
+const CoinImage = styled.img`
+	width: 35px;
+	height: 35px;
+	margin-right: 10px;
+`
+
 
 const Loader = styled.span`
 	text-align: center;
 	font-size: 25px;
 	display:block;
 	color: ${props => props.theme.textColor};
+
+`
+
+const ThemeModeButton = styled.button`
+	margin: 15px 0;
+	border: none;
+	background-color: ${props => props.theme.buttonColor};
+	width: 120px;
+	height: 30px;
+	border-radius: 15px;
+	cursor:pointer;
 `
 
 interface ICoin {
@@ -83,6 +102,7 @@ function Coins() {
 		<Container>
 			<Header>
 				<Title>Coins</Title>
+				<ThemeModeButton>테마 모드 변경</ThemeModeButton>
 
 			</Header>
 			{loading ? <Loader>Loading...</Loader> : <Coinlist>
@@ -90,7 +110,12 @@ function Coins() {
 
 					coins.map((coin) => (
 						<Coin key={coin.id}>
-							<Link to={`/${coin.id}`}>
+							<Link to={{
+								pathname: `/${coin.id}`,
+								state: { name: coin.name },
+							}} >
+								<CoinImage src={`https://coinicons-api.vercel.app/api/icon/${coin.symbol.toLowerCase()}`} />
+
 								{coin.name} &rarr;
 							</Link>
 						</Coin>
