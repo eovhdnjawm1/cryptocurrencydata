@@ -7,12 +7,19 @@ import { isDarkAtom } from './../atoms';
 
 const Title = styled.h1`
 	color: ${props => props.theme.accentColor};
+	margin: 20px 0;
+	font-size: 25px;
+	font-weight:bold;
+	& {
+		transition: color .2s ease-in-out;
+	}
 `
 
 const Container = styled.div`
 padding: 0px 20px;
 max-width: 480px;
 margin: 0 auto;
+
 `
 
 const Header = styled.header`
@@ -25,7 +32,7 @@ const Header = styled.header`
 
 
 const Coinlist = styled.ul`
-
+margin-top: 30px;
 `
 
 const Coin = styled.li`
@@ -73,7 +80,6 @@ const ThemeModeButton = styled.button`
 	width: 120px;
 	height: 30px;
 	border-radius: 15px;
-
 	cursor:pointer;
 `
 
@@ -103,7 +109,6 @@ function Coins({ }: ICoinProps) {
 
 		(async () => {
 			const res = await axios(`https://api.coinpaprika.com/v1/coins`);
-			console.log(res.data);
 			setCoins(res.data.slice(0, 99))
 			setLoading(false);
 		})();
