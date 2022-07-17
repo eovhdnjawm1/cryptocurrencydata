@@ -1,9 +1,12 @@
 import axios from 'axios';
-import { useHistory, useLocation, useParams } from 'react-router-dom';
+import { Route, useHistory, useLocation, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { isDarkAtom } from './../atoms';
+import { Switch } from 'react-router-dom';
+import Price from './Price';
+import Chart from './Chart';
 
 const Title = styled.h1`
 	color: ${props => props.theme.decColor};
@@ -105,6 +108,9 @@ const Tab = styled.span <  { isActive: boolean }> `
   }
 `;
 
+const RouteStyle = styled.div`
+	color: ${(props) => props.theme.decColor};
+`
 
 interface ITag {
 	coin_counter: number;
@@ -241,6 +247,12 @@ function Coin() {
 								<span>{priceInfo?.max_supply}</span>
 							</OverviewItem>
 						</Overview>
+						<Switch>
+							<RouteStyle>
+								<Route path={`/${coinId}/price`}><Price /></Route>
+								<Route path={`/${coinId}/chart`}><Chart /></Route>
+							</RouteStyle>
+						</Switch>
 					</>
 				)
 			}
