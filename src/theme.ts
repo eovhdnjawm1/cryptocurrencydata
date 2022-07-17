@@ -7,13 +7,15 @@ export const darkTheme: DefaultTheme = {
 	accentColor: "#44bd32",
 	buttonBg: "white",
 	buttonText: "black",
+	decColor: "white",
 };
 
 
 export const whiteTheme: DefaultTheme = {
 	bgColor: "#f5f6fa",
 	textColor: "#2f3640",
-	accentColor: "#44bd32",
+	accentColor: "#8c7ae6",
 	buttonBg: "black",
 	buttonText: "white",
+	decColor: "black",
 }
