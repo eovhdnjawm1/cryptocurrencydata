@@ -60,6 +60,7 @@ table {
 }
 * {
   box-sizing:border-box;
+  transition: color .1s ease-in-out;
 }
 body {
   font-family: 'Source Sans Pro', sans-serif;

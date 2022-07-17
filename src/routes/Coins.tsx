@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { isDarkAtom } from './../atoms';
 
 const Title = styled.h1`
-	color: ${props => props.theme.accentColor};
+	color: ${props => props.theme.decColor};
 	margin: 20px 0;
 	font-size: 25px;
 	font-weight:bold;
@@ -23,7 +23,7 @@ margin: 0 auto;
 `
 
 const Header = styled.header`
-	height: 10vh;
+	height: 20vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -41,8 +41,6 @@ const Coin = styled.li`
 	margin-bottom: 10px;
 	border-radius: 15px;
 	font-weight: bold;
-	
-	
 	a {
 		padding: 20px;
 		transition: color .3s ease-in-out;
@@ -50,7 +48,6 @@ const Coin = styled.li`
 		align-items: center;
 		cursor: pointer;
 	}
-
 	&:hover{
 		a{
 			color: ${props => props.theme.accentColor};

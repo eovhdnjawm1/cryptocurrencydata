@@ -6,7 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import { isDarkAtom } from './../atoms';
 
 const Title = styled.h1`
-	color: ${props => props.theme.accentColor};
+	color: ${props => props.theme.decColor};
 	margin: 20px 0;
 	font-size: 25px;
 	font-weight:bold;
@@ -80,7 +80,7 @@ const OverviewItem = styled.div`
 const Description = styled.p`
   margin: 20px 0px;
   line-height: 25px;
-  color: ${props => props.theme.buttonText};
+  color: ${props => props.theme.decColor};
 `;
 
 const Tabs = styled.div`
@@ -174,6 +174,7 @@ interface RouteState {
 	name: string;
 }
 
+
 function Coin() {
 	const { coinId } = useParams<RouteParams>();
 	const { state } = useLocation<RouteState>();
@@ -186,6 +187,7 @@ function Coin() {
 
 	const [info, setInfo] = useState<InfoData>()
 	const [priceInfo, setPriceInfo] = useState<PriceData>();
+
 
 	useEffect(() => {
 		(async () => {
