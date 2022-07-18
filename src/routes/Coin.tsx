@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Route, useHistory, useLocation, useParams } from 'react-router-dom';
+import { Link, Route, useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
@@ -93,16 +93,18 @@ const Tabs = styled.div`
   gap: 10px;
 `;
 
-const Tab = styled.span <  { isActive: boolean }> `
+const Tab = styled.span<{ isActive: boolean }>`
   text-align: center;
   text-transform: uppercase;
   font-size: 12px;
-  font-weight: 400;
-  background-color: ${(props) => props.theme.buttonBg};
+  font-weight: ${(props) => props.isActive ? 700 : "none"};
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 7px 0px;
   border-radius: 10px;
   color: ${(props) =>
-		props.isActive ? props.theme.accentColor : props.theme.textColor};
+		props.isActive ? props.theme.accentColor : props.theme.decColor};
+  
+
   a {
     display: block;
   }
@@ -194,6 +196,9 @@ function Coin() {
 	const [info, setInfo] = useState<InfoData>()
 	const [priceInfo, setPriceInfo] = useState<PriceData>();
 
+	const priceMatch = useRouteMatch(`/${coinId}/price`);
+	const chartMatch = useRouteMatch(`/${coinId}/chart`);
+
 
 	useEffect(() => {
 		(async () => {
@@ -247,12 +252,26 @@ function Coin() {
 								<span>{priceInfo?.max_supply}</span>
 							</OverviewItem>
 						</Overview>
-						<Switch>
-							<RouteStyle>
+
+						<RouteStyle>
+							<Tabs>
+								<Tab isActive={chartMatch !== null}>
+									<Link to={`/${coinId}/chart`}>
+										Chart
+									</Link>
+								</Tab>
+								<Tab isActive={priceMatch !== null}>
+									<Link to={`/${coinId}/price`}>
+										Price
+									</Link>
+								</Tab>
+							</Tabs>
+
+							<Switch>
 								<Route path={`/${coinId}/price`}><Price /></Route>
 								<Route path={`/${coinId}/chart`}><Chart /></Route>
-							</RouteStyle>
-						</Switch>
+							</Switch>
+						</RouteStyle>
 					</>
 				)
 			}
