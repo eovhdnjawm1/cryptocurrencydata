@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { isDarkAtom } from './../atoms';
+import { fetchCoins } from './../api';
 
 const Title = styled.h1`
 	color: ${props => props.theme.decColor};
@@ -95,21 +97,21 @@ interface ICoinProps {
 }
 
 function Coins({ }: ICoinProps) {
-	const [coins, setCoins] = useState<ICoin[]>([]);
-	const [loading, setLoading] = useState(true);
-
 	const setDarkAtom = useSetRecoilState(isDarkAtom);
 	const isDarakAtom = () => setDarkAtom(prev => !prev)
 
+	const { isLoading, data } = useQuery<ICoin[]>("allcoins", fetchCoins)
+	// const [coins, setCoins] = useState<ICoin[]>([]);
+	// const [loading, setLoading] = useState(true);
 
-	useEffect(() => {
+	// useEffect(() => {
 
-		(async () => {
-			const res = await axios(`https://api.coinpaprika.com/v1/coins`);
-			setCoins(res.data.slice(0, 99))
-			setLoading(false);
-		})();
-	}, [])
+	// 	(async () => {
+	// 		const res = await axios(`https://api.coinpaprika.com/v1/coins`);
+	// 		setCoins(res.data.slice(0, 99))
+	// 		setLoading(false);
+	// 	})();
+	// }, [])
 
 	return (
 		<Container>
@@ -118,10 +120,10 @@ function Coins({ }: ICoinProps) {
 				<ThemeModeButton onClick={isDarakAtom}>테마 모드 변경</ThemeModeButton>
 
 			</Header>
-			{loading ? <Loader>Loading...</Loader> : <Coinlist>
+			{isLoading ? <Loader>Loading...</Loader> : <Coinlist>
 				{
 
-					coins.map((coin) => (
+					data?.slice(0, 100).map((coin) => (
 						<Coin key={coin.id}>
 							<Link to={{
 								pathname: `/${coin.id}`,
