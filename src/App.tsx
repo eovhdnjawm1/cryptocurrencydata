@@ -4,6 +4,7 @@ import { darkTheme, whiteTheme } from "./theme"
 import { ThemeProvider } from 'styled-components';
 import { isDarkAtom } from './atoms';
 import { useRecoilValue } from 'recoil';
+import { ReactQueryDevtools } from 'react-query/devtools';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -84,6 +85,7 @@ function App() {
 			<ThemeProvider theme={isDark ? darkTheme : whiteTheme}>
 				<GlobalStyle />
 				<Router />
+				<ReactQueryDevtools initialIsOpen={true} />
 			</ThemeProvider>
 		</>
 	);
