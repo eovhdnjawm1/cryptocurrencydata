@@ -1,7 +1,13 @@
+import axios from 'axios';
+
 const BASE_URL = `https://api.coinpaprika.com/v1`;
 
+// export function fetchCoins() {
+// 	return fetch(`${BASE_URL}/coins`).then(response => response.json());
+// }
+
 export function fetchCoins() {
-	return fetch(`${BASE_URL}/coins`).then(response => response.json());
+	return axios(`${BASE_URL}/coins`).then(res => res.data)
 }
 
 export function fetchCoinInfo(coinId: string) {
@@ -29,3 +35,4 @@ export function fetchCoinPrice(coinId: string) {
 		response.json()
 	);
 }
+
