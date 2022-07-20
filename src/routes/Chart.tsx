@@ -1,4 +1,4 @@
-
+import ApexCharts from 'apexcharts';
 
 function Chart() {
 	return (
