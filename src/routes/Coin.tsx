@@ -1,7 +1,6 @@
-import axios from 'axios';
+import { Helmet } from 'react-helmet';
 import { Link, Route, useHistory, useLocation, useParams, useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
 import { useSetRecoilState } from 'recoil';
 import { isDarkAtom } from './../atoms';
 import { Switch } from 'react-router-dom';
@@ -204,8 +203,11 @@ function Coin() {
 
 	return (
 		<Container>
+			<Helmet>
+				<title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</title>
+			</Helmet>
 			<Header>
-				<Title>Coin : {coinId}</Title>
+				<Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
 				<BackButton onClick={() => history.push("/")}>🏠</BackButton>
 				<ThemeModeButton onClick={isDarakAtom}>테마 모드 변경</ThemeModeButton>
 			</Header>

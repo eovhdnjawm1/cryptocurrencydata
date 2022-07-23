@@ -6,6 +6,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { isDarkAtom } from './../atoms';
 import { fetchCoins } from './../api';
+import { Helmet } from 'react-helmet';
 
 const Title = styled.h1`
 	color: ${props => props.theme.decColor};
@@ -104,6 +105,9 @@ function Coins({ }: ICoinProps) {
 
 	return (
 		<Container>
+			<Helmet>
+				<title>Coins</title>
+			</Helmet>
 			<Header>
 				<Title>Coins</Title>
 				<ThemeModeButton onClick={isDarakAtom}>테마 모드 변경</ThemeModeButton>
