@@ -101,17 +101,6 @@ function Coins({ }: ICoinProps) {
 	const isDarakAtom = () => setDarkAtom(prev => !prev)
 
 	const { isLoading, data } = useQuery<ICoin[]>("allcoins", fetchCoins)
-	// const [coins, setCoins] = useState<ICoin[]>([]);
-	// const [loading, setLoading] = useState(true);
-
-	// useEffect(() => {
-
-	// 	(async () => {
-	// 		const res = await axios(`https://api.coinpaprika.com/v1/coins`);
-	// 		setCoins(res.data.slice(0, 99))
-	// 		setLoading(false);
-	// 	})();
-	// }, [])
 
 	return (
 		<Container>
