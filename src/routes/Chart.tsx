@@ -1,8 +1,9 @@
 import ApexCharts from 'react-apexcharts';
-import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { fetchCoinHistory } from '../api';
 import dayjs from 'dayjs';
+import { useRecoilValue } from 'recoil';
+import { isDarkAtom } from './../atoms';
 
 interface ChartProps {
 	coinId: string;
@@ -21,7 +22,8 @@ interface IChartType {
 
 function Chart({ coinId }: ChartProps) {
 	const { isLoading, data } = useQuery<IChartType[]>(["ohlcv", coinId], () => fetchCoinHistory(coinId))
-	console.log(data);
+
+	const isDark = useRecoilValue(isDarkAtom);
 
 	return (
 		<>
@@ -40,18 +42,17 @@ function Chart({ coinId }: ChartProps) {
 										price.low,
 										price.close]
 								};
-								// price.close) as number[],
 							})
 						},
 					] as any}
 					options={{
 						theme: {
-							mode: "dark",
+							mode: isDark ? "dark" : "light",
 						},
 						chart: {
 							type: 'candlestick',
 							height: 500,
-							width: 1000,
+							width: 1500,
 							toolbar: {
 								show: false,
 							},
@@ -65,20 +66,16 @@ function Chart({ coinId }: ChartProps) {
 							width: 2,
 							lineCap: 'butt',
 						},
-						// xaxis: {
-						// 	type: 'category',
-						// 	categories: ['1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1']
-						// 	//  () => { return data?.map((price) => price.time_open)) as any }
-
-						// },
 						xaxis: {
 							type: "category",
 							labels: {
-								// datetimeFormatter: { month: "mm yy" },
 								formatter: (val) => {
-									return dayjs(val).format('MMM DD')
+									return dayjs(val).format('HH:mm')
 								}
 							},
+							title: {
+								text: "Hour : Minutes",
+							}
 						},
 						yaxis: {
 							show: true,
