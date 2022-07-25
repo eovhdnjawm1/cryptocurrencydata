@@ -195,7 +195,7 @@ function Coin() {
 	const isDarakAtom = () => setDarkAtom(prev => !prev)
 
 	const priceMatch = useRouteMatch(`/${coinId}/price`);
-	const chartMatch = useRouteMatch(`/${coinId}/chart`);
+	const chartMatch = useRouteMatch(`/${coinId}/Achart`);
 
 	const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(["info", coinId], () => fetchCoinInfo(coinId))
 	const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(["tickers", coinId], () => fetchCoinTickers(coinId))
@@ -243,7 +243,7 @@ function Coin() {
 						<RouteStyle>
 							<Tabs>
 								<Tab isActive={chartMatch !== null}>
-									<Link to={`/${coinId}/chart`}>
+									<Link to={`/${coinId}/Achart`}>
 										Chart
 									</Link>
 								</Tab>
@@ -256,7 +256,7 @@ function Coin() {
 
 							<Switch>
 								<Route path={`/${coinId}/price`}><Price coinId={coinId} /></Route>
-								<Route path={`/${coinId}/chart`}><Chart coinId={coinId} /></Route>
+								<Route path={`/${coinId}/Achart`}><Chart coinId={coinId} /></Route>
 							</Switch>
 						</RouteStyle>
 					</>
