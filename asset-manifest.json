@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/chartCoin/static/js/main.67bebc9f.js",
+    "index.html": "/chartCoin/index.html",
+    "main.67bebc9f.js.map": "/chartCoin/static/js/main.67bebc9f.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.67bebc9f.js"
+  ]
+}
