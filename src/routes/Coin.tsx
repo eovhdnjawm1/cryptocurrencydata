@@ -198,7 +198,11 @@ function Coin() {
 	const chartMatch = useRouteMatch(`/${coinId}/chart`);
 
 	const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(["info", coinId], () => fetchCoinInfo(coinId))
-	const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(["tickers", coinId], () => fetchCoinTickers(coinId))
+	const { isLoading: tickersLoading, data: tickersData } = useQuery<PriceData>(["tickers", coinId], () => fetchCoinTickers(coinId)
+		, {
+			refetchInterval: 5000,
+		}
+	)
 	const loading = infoLoading || tickersLoading;
 
 	return (
