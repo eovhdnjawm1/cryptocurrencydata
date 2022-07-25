@@ -93,11 +93,7 @@ interface ICoin {
 	type: string,
 }
 
-interface ICoinProps {
-
-}
-
-function Coins({ }: ICoinProps) {
+function Coins() {
 	const setDarkAtom = useSetRecoilState(isDarkAtom);
 	const isDarakAtom = () => setDarkAtom(prev => !prev)
 
