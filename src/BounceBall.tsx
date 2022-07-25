@@ -17,6 +17,7 @@ display: flex;
 flex-wrap: wrap;
 align-items: flex-end;
 justify-content: space-between;
+margin: 100px auto 0;
 `
 
 const Ball = styled.div`

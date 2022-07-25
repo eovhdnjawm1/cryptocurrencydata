@@ -1,12 +1,11 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { isDarkAtom } from './../atoms';
 import { fetchCoins } from './../api';
 import { Helmet } from 'react-helmet';
+import LoadingBall from './../BounceBall';
 
 const Title = styled.h1`
 	color: ${props => props.theme.decColor};
@@ -65,8 +64,7 @@ const CoinImage = styled.img`
 
 
 const Loader = styled.span`
-	text-align: center;
-	font-size: 25px;
+	margin: 0 auto;
 	display:block;
 	color: ${props => props.theme.textColor};
 
@@ -109,7 +107,7 @@ function Coins() {
 				<ThemeModeButton onClick={isDarakAtom}>테마 모드 변경</ThemeModeButton>
 
 			</Header>
-			{isLoading ? <Loader>Loading...</Loader> : <Coinlist>
+			{isLoading ? <LoadingBall /> : <Coinlist>
 				{
 
 					data?.slice(0, 100).map((coin) => (

@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import styled from 'styled-components';
 import { fetchCoinHistory } from './../api';
+import LoadingBall from './../BounceBall';
 
 const Container = styled.div`
 	display: grid;
@@ -50,7 +51,7 @@ function Price({ coinId }: PriceProps) {
 
 	return (
 		<>
-			{isLoading ? ("Loading price...") : (
+			{isLoading ? (<LoadingBall />) : (
 				<>
 					<Container>
 						{displayKey.map((data, index) => {

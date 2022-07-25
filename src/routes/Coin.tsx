@@ -8,6 +8,7 @@ import Price from './Price';
 import Chart from './Chart';
 import { fetchCoinInfo, fetchCoinTickers } from './../api';
 import { useQuery } from 'react-query';
+import LoadingBall from '../BounceBall';
 
 const Title = styled.h1`
 	color: ${props => props.theme.decColor};
@@ -215,7 +216,7 @@ function Coin() {
 				<BackButton onClick={() => history.push("/")}>🏠</BackButton>
 				<ThemeModeButton onClick={isDarakAtom}>테마 모드 변경</ThemeModeButton>
 			</Header>
-			{loading ? (<Loader>Loading...</Loader>) :
+			{loading ? (<LoadingBall />) :
 				(
 					<>
 						<Overview>

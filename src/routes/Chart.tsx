@@ -4,6 +4,7 @@ import { fetchCoinHistory } from '../api';
 import dayjs from 'dayjs';
 import { useRecoilValue } from 'recoil';
 import { isDarkAtom } from './../atoms';
+import LoadingBall from './../BounceBall';
 
 interface ChartProps {
 	coinId: string;
@@ -27,7 +28,7 @@ function Chart({ coinId }: ChartProps) {
 
 	return (
 		<>
-			{isLoading ? "Loading chart..." : (
+			{isLoading ? <LoadingBall /> : (
 				<ApexCharts
 					type="candlestick"
 					series={[

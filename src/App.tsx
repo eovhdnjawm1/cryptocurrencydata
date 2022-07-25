@@ -1,5 +1,5 @@
 import Router from "./Router"
-import { createGlobalStyle, DefaultTheme } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import { darkTheme, whiteTheme } from "./theme"
 import { ThemeProvider } from 'styled-components';
 import { isDarkAtom } from './atoms';
